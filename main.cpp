@@ -26,10 +26,7 @@ int main() {
         bst.insert(i);
     }
 
+    bst.remove(7);
+    InOrder<int>(bst.locate(5), [](BiTreeNode<int> * n )-> bool { cout << n->data << endl ; return true; });
 
-    InOrder<int>(bst.root, [](BiTreeNode<int> * n )-> bool { cout << n->data << endl ; return true; });
-//    READ(bst.root) ;
-    cout << endl << endl ;
-   InOrder(bst.root , visit) ;
-    return 0;
 }
