@@ -3,6 +3,7 @@
 #include <vector>
 #include "NodeReader.h"
 #include "BinarySearchTree.h"
+#include "AVLTree.h"
 using namespace std ;
 
 template <typename T>
@@ -12,21 +13,22 @@ auto visit(BiTreeNode<T>* node) ->bool {
 }
 
 int main() {
-//    BinarySearchTree<int> bst ;
-//    bst.root = new BiTreeNode<int>(10) ;
-//    bst.Root() = new BiTreeNode<int>(100);
-//    cout << bst.root->data << endl ;
-
-    bsTree<int> bst([](int x , int y) -> bool {
-        return x > y ;
-    }) ;
-    bst.insert(5);
-    for (int i = 0 ; i < 10 ; i ++){
-        if (i != 5)
-        bst.insert(i);
+    vector<BiTreeNode<int>*> nodes ;
+    nodes.reserve(10);
+    for (int i =  0 ; i < 10 ; i ++){
+        nodes.push_back(new BiTreeNode<int>(i));
     }
+//    cout << nodes.size() << endl ;
 
-    bst.remove(7);
-    InOrder<int>(bst.locate(5), [](BiTreeNode<int> * n )-> bool { cout << n->data << endl ; return true; });
+    bsTree<int> bst ([](int x, int y) -> bool { return (x < y) ;});
 
+    bst.insert(7);
+    bst.insert(5);
+    bst.insert(9);
+    bst.insert(4);
+    bst.insert(6) ;
+    bst.insert(1);
+
+//    cout << Balance_Factor(bst.root) << endl ;
+    READ(AVLTree<int>::LRotate(bst.root));
 }
