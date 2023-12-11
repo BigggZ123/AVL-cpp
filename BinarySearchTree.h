@@ -11,10 +11,11 @@
 template <typename T>
 class BinarySearchTree : public BiTree<T>{
 public:
-    bool                    insert      ( T data )  ;
-    BiTreeNode<T>*          locate      ( T data );
+    virtual bool            insert      ( T data ) ;
+    virtual bool            remove      ( T data ) ;
+    BiTreeNode<T>*          locate      ( T data ) ;
     static BiTreeNode<T>*   Digout      ( BiTreeNode<T>* node);
-    bool                    remove      (T data) ;
+
     explicit BinarySearchTree (bool(*rule)(T , T)) : compare(rule) {} ;
 protected:
     bool    (*compare) (T , T) ;//排序规则

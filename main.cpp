@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BiTree.h"
 #include <vector>
+#include <chrono>
 #include "NodeReader.h"
 #include "BinarySearchTree.h"
 #include "AVLTree.h"
@@ -13,22 +14,12 @@ auto visit(BiTreeNode<T>* node) ->bool {
 }
 
 int main() {
-    vector<BiTreeNode<int>*> nodes ;
-    nodes.reserve(10);
-    for (int i =  0 ; i < 10 ; i ++){
-        nodes.push_back(new BiTreeNode<int>(i));
+    AVLTree<int> avl([](int x , int y) {return x > y ;}) ;
+    for (int i = 0 ; i < 10 ; i ++){
+        avl.insert(i);
     }
-//    cout << nodes.size() << endl ;
-
-    bsTree<int> bst ([](int x, int y) -> bool { return (x < y) ;});
-
-    bst.insert(7);
-    bst.insert(5);
-    bst.insert(9);
-    bst.insert(4);
-    bst.insert(6) ;
-    bst.insert(1);
-
-//    cout << Balance_Factor(bst.root) << endl ;
-    READ(AVLTree<int>::LRotate(bst.root));
+    avl.remove(3);
+    avl.remove(1);
+    cout << Balance_Factor(avl.root) << endl ;
+//    READ(avl.root);
 }

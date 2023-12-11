@@ -1,0 +1,7 @@
+AVLTree<int> avl([](int x , int y) {return x > y ;}) ;
+    for (int i = 0 ; i < 10 ; i ++){
+        avl.insert(i);
+    }
+    avl.remove(3);
+    avl.remove(1);
+    cout << Balance_Factor(avl.root) << endl ;
