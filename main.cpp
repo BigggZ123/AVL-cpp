@@ -5,6 +5,12 @@
 #include "BinarySearchTree.h"
 using namespace std ;
 
+template <typename T>
+auto visit(BiTreeNode<T>* node) ->bool {
+    cout << node->data << endl ;
+    return true ;
+}
+
 int main() {
 //    BinarySearchTree<int> bst ;
 //    bst.root = new BiTreeNode<int>(10) ;
@@ -14,15 +20,16 @@ int main() {
     bsTree<int> bst([](int x , int y) -> bool {
         return x > y ;
     }) ;
+    bst.insert(5);
+    for (int i = 0 ; i < 10 ; i ++){
+        if (i != 5)
+        bst.insert(i);
+    }
 
-    bst.insert(0);
-    bst.insert(-1);
-    bst.insert(1);
 
-    cout << bst.root->RChild->data << endl ;
-    cout << bst.root->LChild->data << endl ;
-//
+    InOrder<int>(bst.root, [](BiTreeNode<int> * n )-> bool { cout << n->data << endl ; return true; });
 //    READ(bst.root) ;
-
+    cout << endl << endl ;
+   InOrder(bst.root , visit) ;
     return 0;
 }

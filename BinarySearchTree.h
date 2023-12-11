@@ -38,39 +38,30 @@ BiTreeNode<T> *BinarySearchTree<T>::locate(T data) {
 
 template<typename T>
 bool BinarySearchTree<T>::insert(T data) {
-    if (not this->root){
+    if (this->root == nullptr){
         this->root = new BiTreeNode<T>(data) ;
+        return true ;
     }
+
     auto cur = this->root ;
-    auto pre = cur;
+    auto pre = cur ;
+
     while (cur != nullptr) {
-//        cout << cur->data << endl;
         pre = cur ;
+
         if (this->compare(data , cur->data)){
-//            cout << "Right" << endl ;
-            cur = cur->RChild;
-        }else{
-//            cout << "Left" << endl ;
-            cur =  cur->LChild;
-//            if (not cur){
-//                cout << "None in the Left" << endl ;
-//            }
+            cur = cur->RChild ;
+        }
+        else{
+            cur = cur->LChild;
         }
     }
 
-//    cout << "Fucking get out of the LOOP" << endl ;
-//    cout << "PRE :\t " << pre->data << endl ;
-    if (this->compare(data , pre->data))
+    if (this->compare(data , pre->data)){
         pre->RChild = new BiTreeNode<T>(data);
-//        if (not pre->RChild)
-//            cout << "Nothing in the Right of Pre-node" << endl ;
-    else
-
-        pre->LChild =  new BiTreeNode<T>(data);
-//        if (not pre->LChild)
-//            cout << "Nothing in the Left of Pre-node" << endl ;
-
-//    cout << "FUCKING OK" << endl ;
+    }else{
+        pre->LChild = new BiTreeNode<T>(data);
+    }
 
     return true ;
 }
