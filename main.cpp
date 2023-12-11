@@ -20,6 +20,6 @@ int main() {
     }
     avl.remove(3);
     avl.remove(1);
-    cout << Balance_Factor(avl.root) << endl ;
-//    READ(avl.root);
+//    cout << Balance_Factor(avl.root) << endl ;
+    READ(avl.root);
 }

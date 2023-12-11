@@ -20,8 +20,9 @@ public :
     static BiTreeNode<T>*       LRotate     (BiTreeNode<T>* node );
     static BiTreeNode<T>*       Rotate      (BiTreeNode<T>* node ) ;
     bool                        insert      (T data) override ;
-    virtual BiTreeNode<T>*      insertHelper(BiTreeNode<T>* node , T data ) ;
     bool                        remove      (T data) override ;
+protected:
+    virtual BiTreeNode<T>*      insertHelper(BiTreeNode<T>* node , T data ) ;
     virtual BiTreeNode<T>*      removeHelper(BiTreeNode<T>* node , T data );
 };
 
@@ -139,8 +140,6 @@ BiTreeNode<T> *AVLTree<T>::removeHelper(BiTreeNode<T> *node, T data) {
             node->data = tmpData ;
         }
 
-        node = this->Rotate(node);
-        return node ;
     }
 
     //因为compare此处不包含==的情况
@@ -149,5 +148,7 @@ BiTreeNode<T> *AVLTree<T>::removeHelper(BiTreeNode<T> *node, T data) {
     }else{
         node->LChild = this->removeHelper(node->LChild , data);
     }
+    node = this->Rotate(node);
+    return node ;
 }
 #endif //AVL_AVLTREE_H
